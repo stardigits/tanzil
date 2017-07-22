@@ -1,0 +1,36 @@
+{
+  "name": "tanzil",
+  "version": "0.0.1",
+  "description": "Nodejs module of Quran text and translation from http://tanzil.net",
+  "main": "./lib/tanzil.js",
+  "bin": "./bin/tanzil.js",
+  "files": [
+    "./bin/tanzil.js",
+    "./lib/tanzil.js",
+    "./lib/config.js",
+    "./public/trans-id.txt",
+    "./public/trans-id.json"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stardigits/tanzil.git"
+  },
+  "keywords": [
+    "quran",
+    "tanzil"
+  ],
+  "author": "stardigits",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stardigits/tanzil/issues"
+  },
+  "homepage": "https://github.com/stardigits/tanzil#readme",
+  "dependencies": {
+    "elasticlunr": "^0.9.5",
+    "jsonfile": "^3.0.1",
+    "needle": "^1.6.0"
+  }
+}
