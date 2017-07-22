@@ -6,15 +6,14 @@ function exit(code, str) {
 }
 
 function usage() {
-  var out = ['Usage: tanzil [search|genindex] '];
-  out.push('Examples: \n tanzil search\n tanzil genindex');
+  var out = ['Usage: tanzil [search|index|config] '];
+  out.push('Examples: \n tanzil search\n tanzil index');
   exit(1, out.join('\n'))
 }
 
 if (process.argv[2] == '-v' || process.argv[2] == '--version') exit(0, tanzil.version);
 else if (process.argv[2] == null) usage();
 var method = process.argv[2], query = process.argv[3];
-var options = { limit: 100, transFile: './../public/trans-id.txt', indexFile: './../public/trans-id.json'};
 var callback = function(err, resp) {
   if (err) return exit(1, "Error: " + err.message);
   if (process.argv.indexOf('-i') != -1)
@@ -22,5 +21,7 @@ var callback = function(err, resp) {
   console.log(resp.body.toString());
 };
 
-var trans = tanzil.search(query);
-console.log(trans);
+if ((method=='search')||(method=='index')||(method=='config')) {
+  var trans = tanzil[method](query);
+  if (Object.keys(trans).length !== 0) console.log(trans);
+}
