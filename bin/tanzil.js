@@ -6,9 +6,23 @@ function exit(code, str) {
 }
 
 function usage() {
-  var out = ['Usage: tanzil [search|index|config] '];
-  out.push('Examples: \n tanzil search\n tanzil index');
-  exit(1, out.join('\n'))
+  var str = "tanzil.js (" + tanzil.version + ")";
+  str += `
+Usage: tanzil <<method>|<keyword>>
+
+Methods:
+  search <keyword>     Search for Quran Text by 'smart' keyword
+  config               Show configuration
+  index                Generate search index json file
+  transpath            Show path of translation and index files
+  
+Examples:
+  tanzil search 1      Search Quran translation by Sura/Chapter number 1
+  tanzil search 71:1   Search Quran translation by Aya/Verse number 71:1
+  tanzil search kursi  Search Quran translation for word 'kursi'
+  
+`;
+  exit(1, str);
 }
 
 if (process.argv[2] == '-v' || process.argv[2] == '--version') exit(0, tanzil.version);
@@ -21,7 +35,12 @@ var callback = function(err, resp) {
   console.log(resp.body.toString());
 };
 
-if ((method=='search')||(method=='index')||(method=='config')) {
-  var trans = tanzil[method](query);
+var trans = {};
+var m = ["search","index","config","transpath"];
+if (m.indexOf(method)!=-1) {
+  trans = tanzil[method](query);
+  if (Object.keys(trans).length !== 0) console.log(trans);
+} else {
+  trans = tanzil.search(method);
   if (Object.keys(trans).length !== 0) console.log(trans);
 }
