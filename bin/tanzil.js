@@ -8,7 +8,7 @@ function exit(code, str) {
 function usage() {
   var str = "tanzil.js (" + tanzil.version + ")";
   str += `
-Usage: tanzil <<method>|<keyword>>
+Usage: tanzil [<method>|<keyword>]
 
 Methods:
   search <keyword>     Search for Quran Text by 'smart' keyword
@@ -20,7 +20,6 @@ Examples:
   tanzil search 1      Search Quran translation by Sura/Chapter number 1
   tanzil search 71:1   Search Quran translation by Aya/Verse number 71:1
   tanzil search kursi  Search Quran translation for word 'kursi'
-  
 `;
   exit(1, str);
 }
