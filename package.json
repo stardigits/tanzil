@@ -1,6 +1,6 @@
 {
   "name": "tanzil",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Nodejs module of Quran text and translation from http://tanzil.net",
   "main": "./lib/tanzil.js",
   "bin": {
